@@ -23,7 +23,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+ $app->withFacades();
 
 // $app->withEloquent();
 
@@ -101,6 +101,7 @@ $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 |--------------------------------------------------------------------------
 |
 | Next we will include the routes file so that they can all be added to
+| the application. This will provide all of the URLs the application
 | the application. This will provide all of the URLs the application
 | can respond to, as well as the controllers that may handle them.
 |
