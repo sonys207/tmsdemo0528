@@ -12,6 +12,19 @@ class Controller extends BaseController
          return 'controlTest';
     }
 
+    public function save()
+    {
+		echo "12345";
+        $result=DB::table('users')->insert(
+            ["id" => "1b7161ea8542462dbf21db4ca9e66288",
+                'name' => 'sam',
+                'email' => 'sam@mail.com'
+            //    'password' => Hash::make("sam1"),
+            ]
+        );
+        echo $result;
+    }
+	
     public function sendsbmsasbatch(Request $Request)
     {
          //send message to service bus with token

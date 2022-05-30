@@ -55,6 +55,9 @@ return [
             'strict' => env('DB_STRICT_MODE', true),
             'engine' => env('DB_ENGINE'),
             'timezone' => env('DB_TIMEZONE', '+00:00'),
+			'options'   => array(
+               PDO::MYSQL_ATTR_SSL_CA => base_path('ssl/DigiCertGlobalRootCA-1.crt.pem')
+            ),   
         ],
 
         'pgsql' => [

@@ -22,7 +22,7 @@ $router->get('/key', function() {
     return \Illuminate\Support\Str::random(32);
 });
 
-$router->post('/save', 'ExampleController@save');
+$router->get('/save', 'Controller@save');
 $router->get('/sendsbmsas', 'Controller@sendsbmsas');
 $router->get('/sendsbmsasbatch', 'Controller@sendsbmsasbatch');
 $router->get('/testAES', 'Controller@testAES');
