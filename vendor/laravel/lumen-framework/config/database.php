@@ -46,7 +46,7 @@ return [
             'host' => env('DB_HOST','mysql-tntdvtms-demo02.mysql.database.azure.com'),
             'port' => env('DB_PORT',3306),
             'database' => env('DB_DATABASE'),
-            'username' => env('DB_USERNAME',''),
+            'username' => env('DB_USERNAME'),
             'password' => env('DB_PASSWORD','!Tntdemo20220530'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),

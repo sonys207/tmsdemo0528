@@ -16,6 +16,7 @@ class Controller extends BaseController
     public function save()
     {   
 		//echo "12345";
+		echo getenv('DB_USERNAME');
         $result=DB::table('users')->insert(
             ["id" => "1b7161ea8542462dbf21db".mt_rand(1,1000000),
                 'name' => 'sam',
