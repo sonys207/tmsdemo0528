@@ -69,7 +69,7 @@ class Controller extends BaseController
          $cURL = curl_init();
          $header=array(
               'Content-Type:application/atom+xml;type=entry;charset=utf-8',
-              'Authorization:SharedAccessSignature sr=https%3a%2f%2ftie0502.servicebus.windows.net%2fmagentoq&sig=nO39PLmWkAesRLK1VQ8A4NoG2gYcUG7tbHPCgjOYY68%3D&se=2283609685&skn=RootManageSharedAccessKey',
+              'Authorization:SharedAccessSignature sr=https%3a%2f%2fsbn-tntdv-tmsdemo01.servicebus.windows.net%2ftms_to_magento&sig=ZSqh1oRTRqpiQ6iNTV6r%2FrFPnoGt7orrMj08%2FuY7kvM%3D&se=1685743255&skn=tms-send-magento',
               'message_type:status_change'
           );
           //require_delivery    new_order   status_change
@@ -81,7 +81,7 @@ class Controller extends BaseController
          //转换为json格式
          $postdatajson = json_encode($postdata2);
         // dd($postdatajson);
-         curl_setopt($cURL, CURLOPT_URL, "https://tie0502.servicebus.windows.net/magentoq/messages");
+         curl_setopt($cURL, CURLOPT_URL, "https://SBN-TNTDV-TMSDEMO01.servicebus.windows.net/tms_to_magento/messages");
          curl_setopt($cURL, CURLOPT_RETURNTRANSFER, true);
          curl_setopt($cURL, CURLOPT_HTTPHEADER, $header); 
          curl_setopt($cURL, CURLOPT_POSTFIELDS, $postdatajson);
