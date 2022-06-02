@@ -23,6 +23,7 @@ $router->get('/key', function() {
 });
 
 $router->get('/save', 'Controller@save');
+$router->get('/sha512', 'Controller@sha512');
 $router->get('/sendsbmsas', 'Controller@sendsbmsas');
 $router->get('/sendsbmsasbatch', 'Controller@sendsbmsasbatch');
 $router->get('/testAES', 'Controller@testAES');

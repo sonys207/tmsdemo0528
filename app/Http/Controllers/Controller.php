@@ -132,7 +132,15 @@ class Controller extends BaseController
          print_r("The delete message response code is ".$info['http_code']."\r\n");
         return 'successfully';
     }
-
+    
+	public function sha512(Request $Request)
+    {
+		$plaintext = "TNT1653438687d3dfc330c54c3f59d3dfc330c54c3f65";
+		$sha512test = hash("sha512",$plaintext);
+		echo $sha512test;
+	}
+	
+	
     public function testAES(Request $Request)
     {
        // $plaintext = "message to be encrypted";
