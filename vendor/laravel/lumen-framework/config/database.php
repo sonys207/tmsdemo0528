@@ -122,9 +122,9 @@ return [
         'default' => [
 		    'scheme' => 'tls',
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST','RC-TNTDV-TMSDEMO01.redis.cache.windows.net'),
-            'password' => env('REDIS_PASSWORD','3Y4SDImwAHOj6Tdf4Va5z0g2CG2Rr16YHAzCaFxkyHA='),
-            'port' => env('REDIS_PORT', '6380'),
+            'host' => env('REDIS_HOST','//RC-TNTDV-TMSDEMO01.redis.cache.windows.net'),
+            'password' => env('REDIS_PASSWORD','//3Y4SDImwAHOj6Tdf4Va5z0g2CG2Rr16YHAzCaFxkyHA='),
+            'port' => env('REDIS_PORT', '//6380'),
             'database' => env('REDIS_DB', '0'),
 			//'ssl'=>[
            //     'crypto_type'=>STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,

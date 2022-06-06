@@ -33,7 +33,7 @@ class Controller extends BaseController
 	   $postdata2 = array(
             'message_type'=>'status_change',
             'message_content'=>array('alg'=>'RSA-OAEP-512-8',
-            'value'=>"This is a audi Q8 from T07!!!"));
+            'value'=>"This is a audi Q8 from T606!!!"));
 		$postdatajson = json_encode($postdata2);  
 		Redis::set("tutorial-n9".mt_rand(1,1000000), $postdatajson); 
 		$test=Redis::get("tutorial-name1");
