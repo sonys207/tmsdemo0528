@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class Controller extends BaseController
 {
@@ -26,6 +27,19 @@ class Controller extends BaseController
         );
         echo $result;
     }
+	
+	public function redis1(Request $Request)
+    {   
+	   $postdata2 = array(
+            'message_type'=>'status_change',
+            'message_content'=>array('alg'=>'RSA-OAEP-512-8',
+            'value'=>"This is a audi Q8 from T07!!!"));
+		$postdatajson = json_encode($postdata2);  
+		Redis::set("tutorial-n9".mt_rand(1,1000000), $postdatajson); 
+		$test=Redis::get("tutorial-name1");
+        echo "Stored string in redis:: " .$test; 
+       	
+	}
 	
     public function sendsbmsasbatch(Request $Request)
     {

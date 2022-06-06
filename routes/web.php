@@ -21,7 +21,7 @@ $router->get('/', function () use ($router) {
 $router->get('/key', function() {
     return \Illuminate\Support\Str::random(32);
 });
-
+$router->get('/redis1', 'Controller@redis1');
 $router->get('/save', 'Controller@save');
 $router->get('/sha512', 'Controller@sha512');
 $router->get('/sendsbmsas', 'Controller@sendsbmsas');

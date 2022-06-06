@@ -24,7 +24,7 @@ $app = new Laravel\Lumen\Application(
 );
 
  $app->withFacades();
-
+ $app->configure('database');
 // $app->withEloquent();
 
 /*
@@ -91,6 +91,7 @@ $app->configure('app');
 |
 */
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
