@@ -47,7 +47,7 @@ class Controller extends BaseController
          $cURL = curl_init();
          $header=array(
               'Content-Type:application/atom+xml;type=entry;charset=utf-8',
-              'Authorization:SharedAccessSignature sr=https%3a%2f%2ftie0502.servicebus.windows.net%2fmagentoq&sig=nO39PLmWkAesRLK1VQ8A4NoG2gYcUG7tbHPCgjOYY68%3D&se=2283609685&skn=RootManageSharedAccessKey',
+              'Authorization:SharedAccessSignature sr=https%3a%2f%2fsbn-tntdv-tmstset01.servicebus.windows.net%2fmagento-tms&sig=sCAAXNaFR75qDB8LqMxi%2Bez6ZDKGIEeezS%2B6e5U5KRk%3D&se=1686690092&skn=magento-tms_send',
             //  'BrokerProperties:{"Label":"M22","State":"Active","TimeToLive":3600}'
           );
           //message content
@@ -75,27 +75,37 @@ class Controller extends BaseController
          //如果发送失败，将发送失败的信息（json格式）存入log。
          //页面提供一个功能，将json格式的信息黏贴进去，点击发送可以trigger这段代码再次发送message到service bus queue
          file_put_contents("php://stdout", 'Error(send message failure):  '.$postdatajson."\r\n");
-    }    
-
+    }
+    
+    public function jwttoken(Request $Request)
+    {
+		$token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL3NlcnZpY2VidXMuYXp1cmUubmV0IiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvMjQyMmNhOTMtZDExNi00NjZjLWI4NTItMWUyNWY2MzAxMDM0LyIsImlhdCI6MTY1MTU0Njg0MSwibmJmIjoxNjUxNTQ2ODQxLCJleHAiOjE2NTE1NTA3NDEsImFpbyI6IkUyWmdZTGpwZVdqQ3lpYnZpTSszSm54Ty9pczZDUUE9IiwiYXBwaWQiOiIxYWJkYTBmYy1jYzJkLTRjNDQtODUxOC00ZDg1NmU4ZDcwMzQiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8yNDIyY2E5My1kMTE2LTQ2NmMtYjg1Mi0xZTI1ZjYzMDEwMzQvIiwib2lkIjoiYjE0OTE2NWEtOWM5Mi00OWQ2LTg4ZWItNTgzYmQzMGQ4NTQ4IiwicmgiOiIwLkFYMEFrOG9pSkJiUmJFYTRVaDRsOWpBUU5Qa09vWUJvZ1QxSnFfa3lsOFR2Ymp5YUFBQS4iLCJzdWIiOiJiMTQ5MTY1YS05YzkyLTQ5ZDYtODhlYi01ODNiZDMwZDg1NDgiLCJ0aWQiOiIyNDIyY2E5My1kMTE2LTQ2NmMtYjg1Mi0xZTI1ZjYzMDEwMzQiLCJ1dGkiOiJRM0dkYlVWaDZVS1ZRdVZOTWVnTkFBIiwidmVyIjoiMS4wIn0.C61IeGF1vpXGCDFy8_IMs9jF0WWbfiriS7UIWCeI29sTcuj-mWeVO5DVdGDXkp6PbxnQ18sGuClbWWbDrGDR7bXx4x07CYLltxoE7nmDdOwGBwjOewgfcnW4jLv419lP_4Oxoe81ewK8qDDyzjzLruAB53AKZy1FsBfOFi8frGOgQ83gcbc6Cm0MU3gby-AQVP3xdoy2kkL5OaOQ7zx80PAbDsfdM9fPhZGVkd2DcYUUoVTfU75BUoOGoAG_llTuYnEvCyqIeisBisQLdhTKv3YlaBVTgmX8VO7MkNFlnKFhU5KSGGYtb7iyjq9CPMlFtjUlImxM8o5NO-40Y2a--Q";
+		$Signature=json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $token)[0]))));
+		
+		$arraySig=(array)$Signature;
+		dd($arraySig);
+	    echo $arraySig['kid']."             ";
+        print_r(json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $token)[1])))));
+	}	
     public function sendsbmsas(Request $Request)
     {
          //send message to service bus with token
          $cURL = curl_init();
          $header=array(
               'Content-Type:application/atom+xml;type=entry;charset=utf-8',
-              'Authorization:SharedAccessSignature sr=https%3a%2f%2fsbn-tntdv-tmsdemo01.servicebus.windows.net%2ftms_to_magento&sig=ZSqh1oRTRqpiQ6iNTV6r%2FrFPnoGt7orrMj08%2FuY7kvM%3D&se=1685743255&skn=tms-send-magento',
-              'message_type:status_change'
+              'Authorization:SharedAccessSignature sr=https%3a%2f%2fsbn-tntdv-tmstset01.servicebus.windows.net%2fmagento-tms&sig=sCAAXNaFR75qDB8LqMxi%2Bez6ZDKGIEeezS%2B6e5U5KRk%3D&se=1686690092&skn=magento-tms_send',
+              'message_type:order_info_change'
           );
-          //require_delivery    new_order   status_change
+          //require_delivery    new_order   order_status_change order_info_change
           //message content
           $postdata2 = array(
-            'message_type'=>'status_change',
+            'message_type'=>'order_info_change',
             'message_content'=>array('alg'=>'RSA-OAEP-512-8',
-            'value'=>"This is a audi Q8 from T03!!!"));
+            'value'=>"This is a audi Q8 from T07!!!"));
          //转换为json格式
          $postdatajson = json_encode($postdata2);
         // dd($postdatajson);
-         curl_setopt($cURL, CURLOPT_URL, "https://SBN-TNTDV-TMSDEMO01.servicebus.windows.net/tms_to_magento/messages");
+         curl_setopt($cURL, CURLOPT_URL, "https://SBN-TNTDV-TMSTSET01.servicebus.windows.net/magento-tms/messages");
          curl_setopt($cURL, CURLOPT_RETURNTRANSFER, true);
          curl_setopt($cURL, CURLOPT_HTTPHEADER, $header); 
          curl_setopt($cURL, CURLOPT_POSTFIELDS, $postdatajson);
@@ -149,11 +159,13 @@ class Controller extends BaseController
     
 	public function sha512(Request $Request)
     {
-		$plaintext = "TNT1653438687d3dfc330c54c3f59d3dfc330c54c3f65";
+		$plaintext = "TNT1655407670d3dfc330c54c3f59d3dfc330c54c3f65";
 		$sha512test = hash("sha512",$plaintext);
 		echo $sha512test;
 	}
+	//12669454f6746429fc24f2d58296b6031d1278b22dc61eaff9109b963af34b8fae5e6514d579929a9cd5bea7f9e308fb5e7637fa5d54aac061401143fcf2556c
 	
+	//12669454f6746429fc24f2d58296b6031d1278b22dc61eaff9109b963af34b8fae5e6514d579929a9cd5bea7f9e308fb5e7637fa5d54aac061401143fcf2556c
 	
     public function testAES(Request $Request)
     {
@@ -197,7 +209,16 @@ class Controller extends BaseController
      dd(gettype($la_paras['ContentData']));
      dd(json_decode($la_paras['ContentData'])->message_type,(array)(json_decode($la_paras['ContentData'])->message_content));
     } 
+     public function create_order(Request $Request)
 
+    {
+		$issue="System Error:The create order function does not work";
+		// echo("<script>console.log('1234567890');</script>"); 
+		// echo '<script>console.log("1-'.$issue.'");</script>';
+		 file_put_contents("php://stdout", 'create_order-'.$issue."\r\n");
+		 return 123;
+     
+    }
     public function handle_require_delivery(Request $Request)
     {
         return 2;

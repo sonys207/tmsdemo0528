@@ -24,6 +24,8 @@ $router->get('/key', function() {
 $router->get('/redis1', 'Controller@redis1');
 $router->get('/save', 'Controller@save');
 $router->get('/sha512', 'Controller@sha512');
+$router->get('/jwttoken', 'Controller@jwttoken');
+$router->get('/create_order', 'Controller@create_order');
 $router->get('/sendsbmsas', 'Controller@sendsbmsas');
 $router->get('/sendsbmsasbatch', 'Controller@sendsbmsasbatch');
 $router->get('/testAES', 'Controller@testAES');
