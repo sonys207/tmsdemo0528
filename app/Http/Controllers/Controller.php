@@ -216,8 +216,10 @@ class Controller extends BaseController
 		// echo("<script>console.log('1234567890');</script>"); 
 		// echo '<script>console.log("1-'.$issue.'");</script>';
 		 file_put_contents("php://stdout", 'create_order-'.$issue."\r\n");
-		 return 123;
-     
+		 error_log('API Error:Some message here.');
+		 return 123; 
+      //exception???
+	  // level的指定参数？？？
     }
     public function handle_require_delivery(Request $Request)
     {
