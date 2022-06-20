@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Log;
 
 class Controller extends BaseController
 {
@@ -212,13 +213,19 @@ class Controller extends BaseController
      public function create_order(Request $Request)
 
     {
-		$issue="System Error:The create order function does not work";
-		// echo("<script>console.log('1234567890');</script>"); 
-		// echo '<script>console.log("1-'.$issue.'");</script>';
-		 file_put_contents("php://stdout", 'create_order-'.$issue."\r\n");
-		 error_log('API Error:Some message here.');
+		//$issue="System Error:The create order function does not work";
+		
+		
+		// file_put_contents("php://stdout", 'create_order-'.$issue."\r\n");
+		// error_log('API Error:Some message here.');
+		
+		  Log::debug('an test-123');
+		  Log::error('2 test-345');
+		   Log::alert('alert-0620 test-345');
+		  Log::channel('go3')->critical('Something happened12345!');
 		 return 123; 
       //exception???
+	     
 	  // level的指定参数？？？
     }
     public function handle_require_delivery(Request $Request)

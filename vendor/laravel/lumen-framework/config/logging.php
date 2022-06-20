@@ -50,22 +50,33 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['go1','go2','go3','go4'],
         ],
 
-        'single' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/lumen.log'),
-            'level' => 'debug',
-        ],
-
-        'daily' => [
+        'go1' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/lumen.log'),
+            'path' => storage_path('logs/lumen-debugtony.log'),
             'level' => 'debug',
+			'days' => 14,
+        ],
+        'go4' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/lumen-alerttony.log'),
+            'level' => 'alert',
+			'days' => 14,
+        ],
+        'go2' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/lumen-errortony.log'),
+            'level' => 'error',
             'days' => 14,
         ],
-
+         'go3' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/lumen-criticaltony.log'),
+            'level' => 'critical',
+            'days' => 14,
+        ],
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
