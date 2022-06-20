@@ -220,7 +220,7 @@ class Controller extends BaseController
 		// error_log('API Error:Some message here.');
 		
 		
-		  Log::debug('an test-123');
+		  Log::channel('go1')->debug('Something happened1234566666666!');;
 		  Log::error('2 test-345');
 		  Log::alert('alert-0620 test-345');
 		  Log::channel('go3')->critical('Something happened12345!');

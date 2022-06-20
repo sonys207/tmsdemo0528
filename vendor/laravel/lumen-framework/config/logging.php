@@ -54,7 +54,7 @@ return [
         ],
 
         'go1' => [
-            'driver' => 'daily',
+            'driver' => 'errorlog',
             'path' => storage_path('logs/lumen-debugtony.log'),
             'level' => 'debug',
 			'days' => 14,
@@ -72,7 +72,7 @@ return [
             'days' => 14,
         ],
          'go3' => [
-            'driver' => 'daily',
+            'driver' => 'errorlog',
             'path' => storage_path('logs/lumen-criticaltony.log'),
             'level' => 'critical',
             'days' => 14,
